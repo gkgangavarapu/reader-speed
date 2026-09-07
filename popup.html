@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, sans-serif;
+      width: 260px;
+      margin: 0;
+      padding: 12px;
+    }
+    h1 { font-size: 14px; margin: 0 0 10px; }
+    button {
+      border: none;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    #toggle { width: 100%; font-weight: 600; }
+    #toggle.on { background: var(--acc, #d93025); color: #fff; }
+    #toggle.off { background: #e8eaed; color: #202124; }
+    .secondary { width: 100%; background: #f1f3f4; color: #202124; margin-bottom: 6px; }
+    .secondary:hover { background: #e0e2e5; }
+    .section-label { font-size: 11px; color: #5f6368; margin: 12px 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+    .swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.15);
+      box-sizing: border-box;
+      padding: 0;
+    }
+    .swatch.sel { border: 2px solid #202124; box-shadow: 0 0 0 1.5px #fff inset; }
+    .check-row { margin-top: 2px; }
+    .check-row label { font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer; color: #3c4043; }
+    .preview {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      font-size: 15px;
+      line-height: 1.6;
+      background: #fff;
+      color: #202124;
+    }
+    #pvColor { font-weight: 700; }
+    .note { font-size: 11px; color: #80868b; margin-top: 8px; }
+    .muted { color: #80868b; }
+    .pintip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #3c4043;
+      background: #fef7e0;
+      border: 1px solid #f9ab00;
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 8px;
+    }
+    .pintip .icon { vertical-align: -1px; margin: 0 1px; }
+    .pintip button {
+      margin-left: auto;
+      white-space: nowrap;
+      background: #f9ab00;
+      color: #202124;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reader Speed</h1>
+  <div id="host" class="note" style="margin-bottom:10px"></div>
+
+  <div id="pintip" class="pintip">
+    <span>Pin Reader Speed for one-click access — click the
+      <svg class="icon" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path fill="currentColor" d="M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6.5 8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm11 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM12 12.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm-5.5 4.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm11 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      icon in your toolbar, then press the pin.</span>
+    <button id="pintip-close" title="Dismiss">Got it</button>
+  </div>
+
+  <button id="toggle" class="off">Enable on this page</button>
+  <div style="height:8px"></div>
+  <button id="rehighlight" class="secondary">Re-highlight page</button>
+
+  <div class="section-label">Highlight color</div>
+  <div id="swatches" class="swatches"></div>
+
+  <div class="section-label">Emphasis</div>
+  <div class="check-row">
+    <label><input type="checkbox" id="bold" checked /> Bold the ORP letter</label>
+  </div>
+
+  <div class="preview">
+    The quick <span id="pvColor">br</span>own fox
+  </div>
+
+  <div id="note" class="note"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Local dev fixture (not shipped to the store)
+test.html
+
+# Build artifacts / generated store assets byproducts
+releases/
+store_assets/promo-1400x560.html

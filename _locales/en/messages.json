@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Reader Speed",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Read faster, naturally. Highlights each word's Optimal Recognition Point to reduce subvocalization and help your eyes glide across any page.",
+    "description": "Extension description"
+  }
+}
