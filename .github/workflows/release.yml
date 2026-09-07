@@ -1,0 +1,44 @@
+name: release
+
+# Triggers only when you push a version tag like v1.4.0
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build extension zip
+        shell: powershell
+        run: |
+          $m = Get-Content manifest.json -Raw | ConvertFrom-Json
+          $ver = $m.version
+          $slug = ($m.name -replace '[^A-Za-z0-9]+', '-').ToLower().Trim('-')
+          New-Item releases -ItemType Directory -Force | Out-Null
+          $dest = "releases\$slug-$ver.zip"
+          Compress-Archive -Path manifest.json,content.js,popup.html,popup.js,icons,_locales -DestinationPath $dest -Force
+          Write-Output "Built $dest"
+          Write-Output ("ARTIFACT=" + $dest) >> $env:GITHUB_ENV
+          Write-Output ("VERSION=" + $ver)   >> $env:GITHUB_ENV
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Reader Speed ${{ env.VERSION }}
+          body: |
+            Highlights each word's Optimal Recognition Point (ORP) to reduce
+            subvocalization and speed up reading.
+
+            - Storage-only permission; no host or tab access
+            - 8 highlight colors + bold emphasis
+            - Per-site enable/disable, remembered locally
+          files: ${{ env.ARTIFACT }}
