@@ -11,6 +11,8 @@ Chrome, Edge, Brave and other Chromium browsers.
 2. Enable **Developer mode**.
 3. **Load unpacked** and select this folder.
 
+Can also install from here -> [Install](https://microsoftedge.microsoft.com/addons/detail/reader-speed/heokmbpdgnjhpamgbjneelbiepofmnem)
+
 ## Usage
 
 Click the extension icon, then **Enable on this page**. Reader Speed highlights
