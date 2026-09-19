@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Reader Speed",
-  "version": "1.4.0",
-  "version_name": "1.4.0",
+  "version": "1.4.1",
+  "version_name": "1.4.1",
   "default_locale": "en",
   "description": "Read faster, naturally. Highlights each word's Optimal Recognition Point to reduce subvocalization and speed up reading.",
   "author": "G Geetha Krishna manikanteswar",
@@ -14,7 +14,9 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
     }
   ],
   "action": {
