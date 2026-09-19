@@ -41,4 +41,8 @@ jobs:
             - Storage-only permission; no host or tab access
             - 8 highlight colors + bold emphasis
             - Per-site enable/disable, remembered locally
+
+            Fixes:
+            - Highlight content rendered inside same-origin iframes
+              (e.g. PIB press release article bodies)
           files: ${{ env.ARTIFACT }}
