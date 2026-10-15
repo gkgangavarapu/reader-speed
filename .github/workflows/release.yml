@@ -1,10 +1,9 @@
 name: release
 
-# Triggers only when you push a version tag like v1.4.0
+# Manual only - run from the Actions tab ("Run workflow").
+# No automatic trigger: pushing commits or tags will NOT start a release.
 on:
-  push:
-    tags:
-      - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -32,7 +31,7 @@ jobs:
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
+          tag_name: v${{ env.VERSION }}
           name: Reader Speed ${{ env.VERSION }}
           body: |
             Highlights each word's Optimal Recognition Point (ORP) to reduce
@@ -41,8 +40,4 @@ jobs:
             - Storage-only permission; no host or tab access
             - 8 highlight colors + bold emphasis
             - Per-site enable/disable, remembered locally
-
-            Fixes:
-            - Highlight content rendered inside same-origin iframes
-              (e.g. PIB press release article bodies)
           files: ${{ env.ARTIFACT }}
